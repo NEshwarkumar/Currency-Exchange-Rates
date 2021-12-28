@@ -28,4 +28,3 @@ currencyone.value=currencytwo.value;
 currencytwo.value=temp;
 calculate()});
 
-calculate()
