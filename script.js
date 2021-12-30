@@ -16,12 +16,15 @@ fetch(` https://v6.exchangerate-api.com/v6/4ce18be008efeee3e5092d04/latest/${cur
     rate.innerText=`1  ${currency_one} =${ratee} ${currency_two}`
     amttwo.value=(amtone.value * ratee).toFixed(2);}
 )}
-
-
-document.addEventListener('change',calculate);
-document.addEventListener('change',calculate);
-document.addEventListener('input',calculate);
-document.addEventListener('input',calculate);
+function debounce(fn,wait){
+    let timer;
+    return function(...args){
+        if(timer)clearTimeout(timer);
+        timer=setTimeout(()=>fn(...args),wait);
+    }
+}
+document.addEventListener('input',debounce(calculate,1000));
+document.addEventListener('change',debounce(calculate,1000));
 swap.addEventListener('click',()=>{
 const temp=currencyone.value;
 currencyone.value=currencytwo.value;
